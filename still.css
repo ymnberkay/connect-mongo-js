@@ -1,0 +1,13 @@
+.container{
+    width: 1000px;
+    margin:auto;
+    display: flex;
+    gap:200px;
+    padding:50px;
+}
+.float-l {
+    float:left;
+  }
+.float-r {
+    float:right;
+  }
