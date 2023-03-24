@@ -29,27 +29,42 @@
 
 <body>
     <h1>Posting data to mongo</h1>
-    <form class="containter" method="post" action="/">
-        <div class="form-group">
-            <input class="form-control" name="title">
-        </div>
-        <div class="form-group">
-            <input class="form-control" name="content">
+
+    <form class="containter" id="container" method="post" action="/">
+        <div id="divInputs">
+            <div class="form-group">
+                <input class="form-control" name="title" id="title1">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="content" id="title2">
+            </div>
         </div>
         <button>add mobgodb</button>
     </form>
-    <button type="button" onclick="myFunction()">Click me</button>
+    <button type="button" id="btnCreateInput">Yeni Input</button>
     <form class="containter" method="post" action="/">
-    <script>
-        function myFunction() {
-            var x = document.createElement("input");
-            x.setAttribute("type", "text");
-            x.setAttribute("name", "content2");
-            x.setAttribute("class", "democlass");
-            document.querySelector(".form-group").appendChild(x);
-        }
-    </script>
     </form>
+    <script>
+        let inputCount = 0;
+        const divInputs = document.getElementById('divInputs');
+        document.getElementById('btnCreateInput').addEventListener("click", function () {
+            inputCount++;
+            const newInput = document.createElement('input');
+            newInput.type = "text";
+            newInput.id = "input" + inputCount;
+            newInput.className = "form-control";
+            newInput.name = "text" + inputCount;
+            const newDiv = document.createElement('div');
+            newDiv.id = "div" + inputCount;
+            newDiv.className = "form-group";
+            newDiv.appendChild(newInput);
+            divInputs.appendChild(newDiv);
+            
+        })
+        
+        
+        
+    </script>
     <script>src = "server.js"</script>
 </body>
 
