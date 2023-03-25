@@ -42,8 +42,10 @@
         <button>add mobgodb</button>
     </form>
     <button type="button" id="btnCreateInput">Yeni Input</button>
+    <button type="button" value="Result" onclick="getData()">Birleştir</button>
     <form class="containter" method="post" action="/">
     </form>
+    
     <script>
         let inputCount = 0;
         const divInputs = document.getElementById('divInputs');
@@ -59,13 +61,11 @@
             newDiv.className = "form-group";
             newDiv.appendChild(newInput);
             divInputs.appendChild(newDiv);
-            
-        })
-        
-        
-        
+
+        }) 
     </script>
-    <script>src = "server.js"</script>
+    <script src="https://cdn.jsdelivr.net/npm/mongodb@4.1.0/browser.min.js"></script>
+    <script src="server.js"></script>
 </body>
 
 </html>
