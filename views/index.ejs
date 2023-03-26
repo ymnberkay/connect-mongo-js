@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<style>
+    .democlass {
+        display: block;
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<body>
+    <h1>Posting data to mongo</h1>
+
+    <form class="containter" id="container" method="post" action="/">
+        <div id="divInputs">
+            <div class="form-group">
+                <input class="form-control" name="title" id="title1">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="content" id="title2">
+            </div>
+        </div>
+        <button>add mobgodb</button>
+    </form>
+    <button type="button" id="btnCreateInput">Yeni Input</button>
+    <button type="button" value="Result" onclick="getData()">Birleştir</button>
+    <form class="containter" method="post" action="/">
+    </form>
+    <div>
+            <br>
+            <br>
+            <br>
+            <p><%= result %></p>
+    </div>
+    
+    <script>
+        let inputCount = 0;
+        const divInputs = document.getElementById('divInputs');
+        document.getElementById('btnCreateInput').addEventListener("click", function () {
+            inputCount++;
+            const newInput = document.createElement('input');
+            newInput.type = "text";
+            newInput.id = "input" + inputCount;
+            newInput.className = "form-control";
+            newInput.name = "text" + inputCount;
+            const newDiv = document.createElement('div');
+            newDiv.id = "div" + inputCount;
+            newDiv.className = "form-group";
+            newDiv.appendChild(newInput);
+            divInputs.appendChild(newDiv);
+
+        }) 
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mongodb@4.1.0/browser.min.js"></script>
+    <script src="server.js"></script>
+</body>
+
+</html>

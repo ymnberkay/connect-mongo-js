@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const ejs = require('ejs');
+app.set('view engine', 'ejs');
 const bodyParser = require("body-parser");
 
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -30,12 +32,24 @@ const notesSchema = {
 
 
 }
-
-
+const resultsSchema = {
+    allSentence: String,
+    time: Number
+}
+const Result = mongoose.model("Result", resultsSchema);
 const Note = mongoose.model("Note", notesSchema);
 
+async function getItems(){
+
+    const Items = await Result.find({}).sort({_id:-1}).limit(1);
+    return Items;
+  
+  }
+
 app.get("/", function (req, res) {
-    res.sendFile(__dirname + "/index.html");
+    getItems().then(function(FoundItems){
+        res.render('index', {resultsList: FoundItems});
+      });
 })
 
 app.post("/", function(req, res) {
@@ -66,11 +80,7 @@ app.listen(5500, function(){
     console.log("server is running on 5500");
 })
 
-const resultsSchema = {
-    allSentence: String,
-    time: Number
-}
-const Result = mongoose.model("Result", resultsSchema);
+
 var cumle = "";
 
 async function getData(){
@@ -86,3 +96,4 @@ function display() {
  }
 
 
+getData();
